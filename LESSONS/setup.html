@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<nav class="navbar">
+  <div class="nav-logo">
+    <a href="#">CrabCone 🦀</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/LESSONS/new.html">Create</a></li>
+    <li><a href="mailto:shaunta.gates6911@gmail.com">Email us</a></li>
+    <li><a href="/login.html">Log in</a></li>
+  </ul>
+</nav>
+<style>
+/* Reset browser margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set up the global font */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style the navigation container */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Pushes logo and links to opposite sides */
+  align-items: center;            /* Centers items vertically */
+  background-color: #333;
+  padding: 1rem 2rem;
+  position: sticky;               /* Keeps navbar fixed at the top while scrolling */
+  top: 0;
+  z-index: 1000;
+}
+
+/* Style the logo */
+.nav-logo a {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;          /* Removes default underline */
+}
+
+/* Turn the vertical list into a horizontal line */
+.nav-links {
+  display: flex;
+  list-style: none;               /* Removes standard bullet points */
+}
+
+/* Add spacing between links */
+.nav-links li {
+  margin-left: 20px;
+}
+
+/* Style the individual anchor links */
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;    /* Smooth hover effect transition */
+}
+
+/* Change link color when a user hovers over it */
+.nav-links a:hover {
+  color: #ff7b00;
+}
+  font-family: sans-serif;
+  }
+</style>
+
+<h1>What do you want to create?</h1>
+<div class="feature-card">
+  <div class="icon-container">
+    <svg><svg xmlns="http://w3.org" width="100%" height="100%">
+  <defs>
+    <!-- Define the repeating brick pattern -->
+    <pattern id="brick-pattern" width="40" height="20" patternUnits="userSpaceOnUse">
+      <!-- Brick background / Mortar color -->
+      <rect width="40" height="20" fill="#e0e0e0"/>
+      
+      <!-- Brick shapes and horizontal/vertical lines -->
+      <path d="M 0,0 L 40,0 
+               M 0,10 L 40,10 
+               M 0,0 L 0,10 
+               M 20,10 L 20,20 
+               M 40,0 L 40,10" 
+            stroke="#b03030" 
+            stroke-width="2" 
+            fill="none"/>
+    </pattern>
+  </defs
+  <!-- Apply the pattern to any shape -->
+  <rect width="100%" height="100%" fill="url(#brick-pattern)" />
+</svg>
+    </svg>
+  </div>
+  <h3>A block</h3>
+  <a href="/new.html" class="cta-link">Choose &rarr;</a>
+</div>
+<div class="feature-card">
+  <div class="feature-icon">✨</div>
+  <h3 class="feature-title">A extension</h3>
+  <a href="/extcreate.html" class="feature-btn">Learn More</a>
+</div>
