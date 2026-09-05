@@ -5,7 +5,7 @@ This folder contains helper files to package the CrabCone website as a Windows d
 Files and purpose
 - `main.js` - Minimal Electron entry that loads `index.html`.
 - `package.json` - Electron build configuration and scripts.
-- `icon.ico` - (optional) Windows icon file; place your .ico here to customize the app icon.
+- `icon.jpeg` - (optional) Windows icon file; place your .jpeg here to customize the app icon.
 - `README.md` - (this file) instructions.
 
 Local usage (Windows)
