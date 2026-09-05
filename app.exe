@@ -1,0 +1,29 @@
+{
+  "name": "crabcone-desktop",
+  "version": "0.1.0",
+  "description": "CrabCone packaged as a desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64",
+    "nativefier": "npx nativefier --name \"CrabCone\" --icon ../icon.ico ../"
+  },
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "electron-builder": "^24.0.0",
+    "nativefier": "^50.0.0"
+  },
+  "build": {
+    "appId": "com.shauntagates6911.crabcone",
+    "files": [
+      "**/*",
+      "../index.html",
+      "../images",
+      "../LESSONS"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
+  }
+}
