@@ -15,6 +15,9 @@
     "appId": "com.shauntagates6911.crabcone",
     "files": [
       "**/*"
+      "../index.html",
+      "../examples",
+      "../LESSONS"
     ],
     "win": {
       "target": "nsis",
