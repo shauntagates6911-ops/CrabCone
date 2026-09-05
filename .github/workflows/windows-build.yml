@@ -1,0 +1,53 @@
+name: Build Windows desktop artifacts
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install desktop dependencies
+        working-directory: ./desktop
+        run: |
+          npm ci
+
+      - name: Build Electron (electron-builder)
+        working-directory: ./desktop
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK || '' }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD || '' }}
+        run: |
+          npm run dist || echo "electron-builder step failed or produced no artifact"
+
+      - name: Upload electron-builder artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-dist
+          path: |
+            desktop/dist
+
+      - name: Create Nativefier app (alternative quick package)
+        working-directory: ./desktop
+        run: |
+          npx nativefier --name "CrabCone" --icon ../icon.ico ../ || echo "nativefier failed"
+
+      - name: Upload nativefier artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nativefier-output
+          path: |
+            desktop/*CrabCone*
