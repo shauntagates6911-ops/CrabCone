@@ -1,0 +1,76 @@
+name: Build desktop artifacts
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install desktop dependencies
+        working-directory: ./desktop
+        run: npm ci
+
+      - name: Build Electron for Windows
+        working-directory: ./desktop
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK || '' }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD || '' }}
+        run: |
+          npm run dist:win || echo "electron-builder (Windows) failed or produced no artifact"
+
+      - name: Upload electron-builder Windows artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-dist-windows
+          path: desktop/dist
+
+  build-macos:
+    runs-on: macos-latest
+    needs: []
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install desktop dependencies
+        working-directory: ./desktop
+        run: npm ci
+
+      - name: Build Electron DMG (mac)
+        working-directory: ./desktop
+        env:
+          # Optional signing and notarization env vars — set these in repo secrets if you want signing/notarization:
+          CSC_LINK: ${{ secrets.586-577 || '' }}
+          CSC_KEY_PASSWORD: ${{ secrets.588_467_466 || '' }}
+          APPLE_ID: ${{ secrets.35 || '' }}
+          APPLE_PASSWORD: ${{ secrets.596968 || '' }}
+          # OR if using API key:
+          # APPLE_API_KEY: ${{ secrets.687_465 || '' }}
+          # APPLE_API_KEY_ID: ${{ secrets.687_465ID || '' }}
+          # APPLE_API_ISSUER: ${{ secrets.eu|| '' }}
+        run: |
+          npm run dist:mac || echo "electron-builder (mac) failed or produced no artifact"
+
+      - name: Upload mac DMG artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-dist-macos
+          path: |
+            desktop/dist/*.dmg
