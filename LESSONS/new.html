@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- Custom Blocks Modal Container -->
+<div class="scratch-modal" id="customBlocksModal" data-user-role="creator">
+  <div class="modal-header">
+    <h2>Make a Block</h2>
+    <span class="permission-badge">Creator</span>
+  </div>
+
+  <div class="modal-body">
+    <!-- Block Name Input (Allowed for Creators and Admins) -->
+    <div class="form-group permission-require-create">
+      <label for="blockName">Block name</label>
+      <input type="text" id="blockName" placeholder="block">
+    </div>
+
+    <!-- Argument Controls (Allowed for Creators and Admins) -->
+    <div class="action-buttons permission-require-create">
+      <button class="btn-secondary">+ Add an input (number or text)</button>
+      <button class="btn-secondary">+ Add an input (boolean)</button>
+      <button class="btn-secondary">+ Add a label</button>
+    </div>
+
+    <!-- Administrative Settings (Strictly Hidden for Non-Admins) -->
+    <div class="admin-panel permission-require-admin">
+      <h3>System Permissions</h3>
+      <label>
+        <input type="checkbox" id="globalShare"> Share globally across projects
+      </label>
+    </div>
+  </div>
+
+  <!-- Modal Footer Actions -->
+  <div class="modal-footer">
+    <button class="btn-cancel">Cancel</button>
+    <!-- Save button is disabled if the user only has view permissions -->
+    <button class="btn-submit permission-require-create">OK</button>
+  </div>
+</div>
